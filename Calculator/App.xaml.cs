@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using Calculator.Models;
+using Calculator.Views;
+using Calculator.ViewModels;
 using System.Windows;
 
 namespace Calculator
@@ -13,5 +11,13 @@ namespace Calculator
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup (StartupEventArgs args)
+        {
+            CalculatorEngine ce = new CalculatorEngine();
+            CalculatorViewModel vm = new CalculatorViewModel(ce);
+            CalculatorView cv = new CalculatorView();
+            cv.DataContext = vm;
+            cv.Show();
+        }
     }
 }
